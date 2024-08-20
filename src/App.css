@@ -5,41 +5,9 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
 .chatContainer {
     width: 400px;
-    height: 800px;
+    height: 750px;
     border: 1px solid lightgrey;
     border-radius: 16px;
     display: flex;
@@ -48,7 +16,7 @@
 }
 
 .chatHeader {
-    height: 100px;
+    height: 60px;
     background-color: lightskyblue;
     padding: 0 36px;
     display: flex;
@@ -62,28 +30,36 @@
     align-items: center;
 }
 
-.chatMessages {
-    padding: 24px;
+.chatBody {
+    padding: 36px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     flex: 1;
     gap: 16px;
+    overflow-y: auto;
+}
+
+.chatBody > :first-child {
+    margin-top: auto;
 }
 
 .messageSent {
     padding: 8px 12px;
-    border: 1px solid grey;
     border-radius: 12px 12px 0 12px;
     align-self: flex-end;
-    /* background-color: lightblue; */
+    background: linear-gradient(rgb(0, 235, 80), rgb(0, 220, 70));
+    /* background: linear-gradient(rgb(50, 165, 254), rgb(40, 155, 254)); */
+    color: white;
+    font-weight: 500;
 }
 
 .messageReceived {
     padding: 8px 12px;
+    border: 1px solid grey;
     border-radius: 12px 12px 12px 0;
     align-self: flex-start;
-    background-color: lightblue;
+    font-weight: 500;
 }
 
 .chatFooter {

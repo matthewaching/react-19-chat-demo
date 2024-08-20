@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 
 const dogResponses = ['Wa-rf', 'Wa-rk', 'Ba-rk', 'Bo-rk', 'Awo-', 'Aro-'];
 const dogPunctuation = ['...', '...?', '?', '!', '~'];
@@ -6,6 +6,14 @@ const dogPunctuation = ['...', '...?', '?', '!', '~'];
 const ChatContainer = () => {
     const [textInput, setTextInput] = useState('');
     const [messages, setMessages] = useState<{ text: string, outbound: boolean }[]>([]);
+
+    const chatBodyRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        if (chatBodyRef.current) {
+            chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight - chatBodyRef.current.clientHeight;
+        }
+    }, [messages]);
 
     const handleSubmit = async (event: React.MouseEvent) => {
         event?.preventDefault();
@@ -30,6 +38,7 @@ const ChatContainer = () => {
 
         if (response?.message) {
             setMessages((prevMessages) => [...prevMessages, { text: response.message, outbound: false }]);
+            setTextInput('');
         }
     };
 
@@ -39,8 +48,8 @@ const ChatContainer = () => {
                 <div className='chatAvatar'>A</div>
                 <span>Header</span>
             </div>
-            <div className='chatMessages'>
-                {messages.map(message => <span className={message.outbound ? 'messageSent' : 'messageReceived'}>{message.text}</span>)}
+            <div className='chatBody' ref={chatBodyRef}>
+                {messages.map(message => <div className={message.outbound ? 'messageSent' : 'messageReceived'}>{message.text}</div>)}
             </div>
             <div className='chatFooter'>
                 <form className='chatForm'>
