@@ -17,7 +17,6 @@ const ChatContainer = () => {
 
     const handleSubmit = async (event: React.MouseEvent) => {
         event?.preventDefault();
-        setMessages((prevMessages) => [...prevMessages, { text: textInput, outbound: true }]);
 
         const sendMessage = (input: string) => new Promise<{ message: string }>(resolve => {
             const hash = input.split('').reduce((sum, letter) => sum + letter.charCodeAt(0), 0);
@@ -37,7 +36,7 @@ const ChatContainer = () => {
         const response = await sendMessage(textInput);
 
         if (response?.message) {
-            setMessages((prevMessages) => [...prevMessages, { text: response.message, outbound: false }]);
+            setMessages((prevMessages) => [...prevMessages, { text: textInput, outbound: true }, { text: response.message, outbound: false }]);
             setTextInput('');
         }
     };
