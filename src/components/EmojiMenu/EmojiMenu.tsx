@@ -20,7 +20,7 @@ const EmojiMenu = ({ onEmojiSelected }: Props) => {
         document.addEventListener('click', checkMenuClick);
 
         return () => document.removeEventListener('click', checkMenuClick);
-    });
+    }, []);
 
     const toggleEmojiMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
         const targetNode = event.currentTarget;
@@ -49,4 +49,4 @@ const EmojiMenu = ({ onEmojiSelected }: Props) => {
     )
 }
 
-export default EmojiMenu
+export default EmojiMenu;

@@ -18,14 +18,14 @@
 .chatHeader {
     height: 70px;
     border-radius: 16px 16px 0 0;
-    padding: 0 36px;
+    padding: 0 24px;
     display: flex;
     align-items: center;
     gap: 24px;
     background-color: lightskyblue;
 }
 
-.chatAvatar {
+.headerAvatar {
     height: 30px;
     width: 30px;
     border: 1px solid black;
@@ -33,6 +33,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.headerButton {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    margin-left: auto;
+    border: none;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    background-color: inherit;
+    color: white;
+    cursor: pointer;
+    outline: none !important;
 }
 
 .chatBody {
@@ -53,8 +70,6 @@
     padding: 8px 12px;
     border-radius: 12px 12px 0 12px;
     align-self: flex-end;
-    background: linear-gradient(rgb(0, 235, 80), rgb(0, 220, 70));
-    /* background: linear-gradient(rgb(50, 165, 254), rgb(40, 155, 254)); */
     color: white;
     font-weight: 500;
 }
@@ -65,6 +80,11 @@
     border-radius: 12px 12px 12px 0;
     align-self: flex-start;
     font-weight: 500;
+}
+
+.loadingMessage {
+    background-color: ghostwhite;
+    border-color: ghostwhite;
 }
 
 .chatFooter {

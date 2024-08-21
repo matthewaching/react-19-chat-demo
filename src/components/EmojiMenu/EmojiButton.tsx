@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Props = {
     emoji: string,
     onClick: (event: React.MouseEvent<HTMLButtonElement>) => void,
