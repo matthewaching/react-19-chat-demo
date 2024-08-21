@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from "react";
+import EmojiMenu from "./EmojiMenu/EmojiMenu";
 
 const dogResponses = ['Wa-rf', 'Wa-rk', 'Ba-rk', 'Bo-rk', 'Awo-', 'Aro-'];
 const dogPunctuation = ['...', '...?', '?', '!', '~'];
@@ -51,6 +52,7 @@ const ChatContainer = () => {
                 {messages.map(message => <div className={message.outbound ? 'messageSent' : 'messageReceived'}>{message.text}</div>)}
             </div>
             <div className='chatFooter'>
+                <EmojiMenu onEmojiSelected={(emoji: string) => setTextInput(prevInput => prevInput + emoji)} />
                 <form className='chatForm'>
                     <input value={textInput} onChange={(event => setTextInput(event.target.value))} />
                     <button type='submit' onClick={(event: React.MouseEvent) => handleSubmit(event)}>
