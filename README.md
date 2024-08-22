@@ -14,3 +14,5 @@
   ```
 
 This README will be updated sometime after August 22nd.
+
+Hi I'm [Dillon](https://github.com/dillonreedy), was at the session. Hope you do well.
