@@ -1,7 +1,8 @@
 import { useState } from "react";
 import EmojiMenu from "./EmojiMenu/EmojiMenu";
-import { sendMessage } from "./superDuperSecretAIGeneratedLogic";
+import { sendMessage } from "./superDuperSecretAILogic";
 import ChatConversation from "./ChatConversation";
+import FormButton from "./FormButton";
 
 type Theme = 'apple' | 'android' | '???';
 
@@ -79,9 +80,7 @@ const ChatContainer = ({ dogName, dogAvatar, isOpen }: Props) => {
                 <EmojiMenu onEmojiSelected={(emoji: string) => setTextInput(prevInput => prevInput + emoji)} />
                 <form className='chatForm'>
                     <input value={textInput} onChange={(event => setTextInput(event.target.value))} />
-                    <button type='submit' onClick={(event: React.MouseEvent) => handleSubmit(event)}>
-                        <i className='ri-send-plane-2-fill' />
-                    </button>
+                    <FormButton handleSubmit={handleSubmit} />
                 </form>
             </div>
         </div >

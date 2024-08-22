@@ -20,7 +20,7 @@ const ChatMessage = ({ text, outbound, theme }: Props) => {
         color = `#${mousePosition.toString(16).padStart(6, '0')}`;
     }
 
-    // Exercise ??: Conditionally render Context with 'use'
+    // Exercise 6: Conditionally render Context with 'use'
     // stallComponent(10);
 
     return (
