@@ -2,17 +2,18 @@ const dogResponses = ['Wa-rf', 'Wa-rk', 'Ba-rk', 'Bo-rk', 'Awo-', 'Aro-'];
 const dogPunctuation = ['...', '...?', '?', '!', '~'];
 
 type GeneratedResponse = {
-    replyText: string,
-    isRude?: boolean,
-}
+    sent: string,
+    reply: string,
+};
 
 export const generateChatResponse = (inputText: string) => {
     const hash = inputText.split('').reduce((sum, letter) => sum + letter.charCodeAt(0), 0);
     const selectedResponse = dogResponses[hash % dogResponses.length] + dogPunctuation[hash % dogPunctuation.length];
     const addedVowels = hash % 5;
 
-    let parsedResponse = '';
+    let parsedResponse = 'Grr';
     const rudenessDetected = inputText.toLowerCase().includes('bad');
+    let filteredInput = 'You are such a good boy!';
 
     if (!rudenessDetected) {
         parsedResponse = selectedResponse.replace(/(\w)-/g, (_, letter) => {
@@ -22,11 +23,12 @@ export const generateChatResponse = (inputText: string) => {
             }
             return string;
         });
+        filteredInput = inputText;
     }
 
     return {
-        replyText: parsedResponse,
-        isRude: rudenessDetected,
+        sent: filteredInput,
+        reply: parsedResponse,
     };
 };
 

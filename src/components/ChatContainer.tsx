@@ -37,9 +37,9 @@ const ChatContainer = ({ dogName, dogAvatar, isOpen }: Props) => {
 
         const response = await sendMessage(textInput);
 
-        if (response?.replyText) {
-            setMessages((prevMessages) => [...prevMessages, { text: textInput, outbound: true, theme: theme }]);
-            setMessages((prevMessages) => [...prevMessages, { text: response.replyText, outbound: false, theme: theme }]);
+        if (response) {
+            setMessages((prevMessages) => [...prevMessages, { text: response.sent, outbound: true, theme: theme }]);
+            setMessages((prevMessages) => [...prevMessages, { text: response.reply, outbound: false, theme: theme }]);
             setTextInput('');
         }
     };
