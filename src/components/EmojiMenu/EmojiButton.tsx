@@ -5,7 +5,7 @@ type Props = {
 };
 
 const EmojiButton = ({ emoji, onClick, onMouseEnter }: Props) => {
-    // Exercise 1b: Memoization with useCallback and React.memo
+    // Exercise 1: Memoization
     // stallComponent(2);
 
     return (

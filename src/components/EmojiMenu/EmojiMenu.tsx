@@ -37,6 +37,15 @@ const EmojiMenu = ({ onEmojiSelected }: Props) => {
         setDisplayEmoji(event.currentTarget.id);
     };
 
+    // Exercise 1: Memoization
+    // const philosophizeAboutLife = () => {
+    //     console.log('What kind of dog is best?');
+    //     stallComponent(100);
+    //     console.log('Good dog.');
+    // };
+
+    // philosophizeAboutLife();
+
     return (
         <>
             <button className='emojiMenuButton' onClick={toggleEmojiMenu}>{displayEmoji}</button>

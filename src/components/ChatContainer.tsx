@@ -12,7 +12,13 @@ export type Message = {
     temp?: boolean,
 };
 
-const ChatContainer = () => {
+type Props = {
+    dogName: string,
+    dogAvatar: string,
+    isOpen: boolean,
+};
+
+const ChatContainer = ({ dogName, dogAvatar, isOpen }: Props) => {
     const [textInput, setTextInput] = useState('');
     const [messages, setMessages] = useState<Message[]>([]);
     const [theme, setTheme] = useState<Theme>('???');
@@ -48,11 +54,22 @@ const ChatContainer = () => {
         icon = 'ri-skull-2-fill';
     }
 
-    return (
+    // Exercise #4: Transitions
+    // if (dogName === 'Odie') {
+    //     stallComponent(30);
+    //     stallComponent(30);
+    //     stallComponent(30);
+    //     stallComponent(30);
+    //     stallComponent(30);
+    // }
+
+    return isOpen && (
         <div className='chatContainer'>
             <div className='chatHeader'>
-                <div className='headerAvatar'>A</div>
-                <span>Header</span>
+                <div className='headerAvatar'>
+                    <img src={dogAvatar} />
+                </div>
+                <span>{dogName}</span>
                 <button className='headerButton' onClick={handleThemeChange}>
                     <i className={icon} />
                 </button>

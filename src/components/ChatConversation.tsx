@@ -16,7 +16,7 @@ const ChatConversation = ({ messages }: Props) => {
     return (
         <div className='chatBody' ref={chatBodyRef}>
             {messages.map(message => <ChatMessage text={message.text} outbound={message.outbound} theme={message.theme} />)}
-            {/* <div className='messageReceived loadingMessage'>...</div> */}
+            {/* <div className='messageReceived loadingMessage'><LoadingDots /></div> */}
         </div>
     );
 };

@@ -15,24 +15,53 @@
     flex-direction: column;
 }
 
+.dogPicker {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 4px;
+}
+
+.avatarButton {
+    height: 60px;
+    width: 60px;
+    padding: 0;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
 .chatHeader {
-    height: 70px;
+    height: 90px;
     border-radius: 16px 16px 0 0;
     padding: 0 24px;
     display: flex;
     align-items: center;
     gap: 24px;
     background-color: lightskyblue;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .headerAvatar {
-    height: 30px;
-    width: 30px;
-    border: 1px solid black;
+    height: 60px;
+    width: 60px;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+
+    img {
+        height: 100%;
+        object-fit: contain;
+    }
 }
 
 .headerButton {
