@@ -1,30 +1,21 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import EmojiMenu from "./EmojiMenu/EmojiMenu";
-import ChatMessage from "./ChatMessage";
-
-const dogResponses = ['Wa-rf', 'Wa-rk', 'Ba-rk', 'Bo-rk', 'Awo-', 'Aro-'];
-const dogPunctuation = ['...', '...?', '?', '!', '~'];
+import { sendMessage } from "./superDuperSecretAIGeneratedLogic";
+import ChatConversation from "./ChatConversation";
 
 type Theme = 'apple' | 'android' | '???';
 
-type Message = {
+export type Message = {
     text: string,
     outbound: boolean,
     theme: Theme,
+    temp?: boolean,
 };
 
 const ChatContainer = () => {
     const [textInput, setTextInput] = useState('');
     const [messages, setMessages] = useState<Message[]>([]);
     const [theme, setTheme] = useState<Theme>('???');
-
-    const chatBodyRef = useRef<HTMLDivElement>(null);
-
-    useLayoutEffect(() => {
-        if (chatBodyRef.current) {
-            chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight - chatBodyRef.current.clientHeight;
-        }
-    }, [messages]);
 
     const handleThemeChange = () => {
         setTheme(prevTheme => {
@@ -37,21 +28,6 @@ const ChatContainer = () => {
     const handleSubmit = async (event: React.MouseEvent) => {
         // Hmm, why isn't my submit isn't working?
         event?.preventDefault();
-
-        const sendMessage = (inputText: string) => new Promise<{ replyText: string }>(resolve => {
-            const hash = inputText.split('').reduce((sum, letter) => sum + letter.charCodeAt(0), 0);
-            const selectedResponse = dogResponses[hash % dogResponses.length] + dogPunctuation[hash % dogPunctuation.length];
-            const addedVowels = hash % 5;
-            const parsedResponse = selectedResponse.replace(/(\w)-/g, (_, letter) => {
-                let string = letter;
-                for (let i = 0; i < addedVowels; i++) {
-                    string = string + letter;
-                }
-                return string;
-            });
-
-            setTimeout(() => resolve({ replyText: parsedResponse }), 3000);
-        });
 
         const response = await sendMessage(textInput);
 
@@ -81,10 +57,7 @@ const ChatContainer = () => {
                     <i className={icon} />
                 </button>
             </div>
-            <div className='chatBody' ref={chatBodyRef}>
-                {messages.map(message => <ChatMessage text={message.text} outbound={message.outbound} theme={message.theme} />)}
-                {/* <div className='messageReceived loadingMessage'>...</div> */}
-            </div>
+            <ChatConversation messages={messages} />
             <div className='chatFooter'>
                 <EmojiMenu onEmojiSelected={(emoji: string) => setTextInput(prevInput => prevInput + emoji)} />
                 <form className='chatForm'>
